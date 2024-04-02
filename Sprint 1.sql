@@ -1,80 +1,88 @@
 # ejercicio 2
-select company_name, email, country 
-from company
-order by company_name;
+SELECT company_name, email, country 
+FROM company
+ORDER BY company_name;
+
 # ejercicio 3
-select country 
-from company
-left join
+SELECT DISTINCT country 
+FROM company
+LEFT JOIN
 transaction
-on company.id= transaction.company_id
-where amount >0
-group by country;
+ON company.id= transaction.company_id
+WHERE amount >0
+;
+
 # ejercicio 4
-select count(distinct country)
-from company
-left join
+SELECT COUNT(DISTINCT country)
+FROM company
+LEFT JOIN
 transaction
-on company.id= transaction.company_id
-where amount >0;
+ON company.id= transaction.company_id
+WHERE amount >0;
+
 # ejercicio 5
-select country, company_name
-from company
-where id = 'b-2354';
+SELECT country, company_name
+FROM company
+WHERE id = 'b-2354';
+
 #ejercicio 6
-select company_name
+SELECT company_name, AVG(amount)
 from company
-left join
+LEFT JOIN
 transaction
-on company.id=transaction.company_id
-group by company_name
-order by avg(amount) desc
-limit 1;
+ON company.id=transaction.company_id
+GROUP BY company_name
+ORDER BY AVG(amount) DESC
+LIMIT 1;
+
 # Nivel 2
 # ejercicio 1
-SELECT * FROM transactions.company;
-select id, count(id)
-from company
-group by id
-having count(id)>1;
+SELECT id, COUNT(id)
+FROM company
+GROUP BY id
+HAVING count(id)>1;
+
 # ejercicio 2
-select date(timestamp), sum(amount)
-from transaction
-group by date(timestamp)
-order by sum(amount) desc
-limit 5;
+SELECT DATE(timestamp), SUM(amount)
+FROM transaction
+GROUP BY date(timestamp)
+ORDER BY SUM(amount) DESC
+LIMIT 5;
+
 # ejercicio 3
-select date(timestamp), sum(amount)
-from transaction
-group by date(timestamp)
-order by sum(amount) asc
-limit 5;
+SELECT date(timestamp), SUM(amount)
+FROM transaction
+GROUP BY date(timestamp)
+ORDER BY SUM(amount) ASC
+LIMIT 5;
+
 #ejercicio 4
-select country, avg(amount)
-from company
-join 
+SELECT country, AVG(amount)
+FROM company
+JOIN 
 transaction
-on company.id=transaction.company_id
-group by country
-order by avg(amount) desc;
+ON company.id=transaction.company_id
+GROUP BY country
+ORDER BY AVG(amount) DESC;
+
 #Nivel 3
 # Ejercicio 1
-select company_name, phone, country, sum(amount)
-from company
-join 
+SELECT company_name, phone, country, amount
+FROM company
+JOIN 
 transaction
-on company.id=transaction.company_id
-where amount between 100 and 200
-group by company_name, phone, country
-order by sum(amount) desc;
+ON company.id=transaction.company_id
+WHERE amount BETWEEN 100 AND 200
+ORDER BY amount DESC;
+
 #ejercicio 2
-select company_name
-from company
-join 
+SELECT company_name
+FROM company
+JOIN 
 transaction
-on company.id=transaction.company_id
-where date(timestamp) in ("2022-03-16","2022-02-28","2022-02-13")
-group by company_name;
+ON company.id=transaction.company_id
+WHERE date(timestamp) IN ("2022-03-16","2022-02-28","2022-02-13")
+GROUP BY company_name;
 
 
 
